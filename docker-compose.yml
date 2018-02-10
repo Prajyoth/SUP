@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - portal-network
+    depends_on:
+      - mongodb
+
+
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - portal-network
+
+
+networks:
+  portal-network:
+    driver: bridge
