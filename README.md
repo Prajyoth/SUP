@@ -6,7 +6,12 @@ How to run.
 
 1) Clone Project
 2) Run:  "mvn clean install"
-3) Run:  "docker-compose up" to bring up the services.
+3) Run:  "docker-compose up" to bring up the services
+
+GET
+http://localhost:8080/rest/article/prepopulate
+
+^ Use the above to insert some junk data
 
 GET
 http://localhost:8080/rest/article/all
@@ -20,3 +25,6 @@ http://localhost:8080/rest/article/create
 "heading":"",
 "body":""
 }
+
+SEARCH
+http://localhost:8080/rest/article/search?searchString=<search string>
