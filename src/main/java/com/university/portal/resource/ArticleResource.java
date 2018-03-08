@@ -3,6 +3,7 @@ package com.university.portal.resource;
 
 import com.university.portal.document.Article;
 import com.university.portal.repository.ArticleRepository;
+import com.university.portal.resource.Service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +16,22 @@ public class ArticleResource {
     @Autowired
     private ArticleRepository articleRepository;
 
+    @Autowired
+    private ArticleService articleService;
+
     @GetMapping("/all")
     public List<Article> getAll() {
         return articleRepository.findAll();
+    }
+
+    @GetMapping("/search")
+    public List<Article> searchArticle(@RequestParam String searchString) {
+        return articleRepository.findByHeadingContainingOrTagContaining(searchString, searchString);
+    }
+
+    @GetMapping("/prepopulate")
+    public void prePopulate() {
+        articleService.prePopulateData();
     }
 
     @PostMapping(path = "/create", consumes = "application/json", produces = "application/json")
