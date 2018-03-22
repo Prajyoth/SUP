@@ -21,6 +21,17 @@ services:
     networks:
       - portal-network
 
+  dialogflowproxy:
+    build:
+      context: ../sup-dialogflow-proxy
+      dockerfile: $PWD/../sup-dialogflow-proxy/Dockerfile
+    ports:
+      - 9000:9000
+    networks:
+      - portal-network
+    depends_on:
+      - node
+
 
 networks:
   portal-network:
